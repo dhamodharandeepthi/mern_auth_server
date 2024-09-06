@@ -26,13 +26,15 @@ router.get("/", authenticateToken, async (req, res) => {
   }
 });
 
-router.put('/', authenticateToken, async (req, res) => {
-    try {
-        const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body, { new: true });
+router.put("/", authenticateToken, async (req, res) => {
+  try {
+    const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body, {
+      new: true,
+    });
     res.json(updatedUser);
-    } catch (error) {
-        res.status(500).json({error:"Error updating profile"})
-   }
-})
+  } catch (error) {
+    res.status(500).json({ error: "Error updating profile" });
+  }
+});
 
 module.exports = router;
